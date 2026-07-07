@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SonicTrance — Music Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌀</text></svg>">
+</head>
+<body>
+  <canvas id="viz"></canvas>
+
+  <div id="hud">
+    <header id="topbar">
+      <h1>Sonic<span>Trance</span></h1>
+
+      <div class="group" id="sources">
+        <button id="btn-capture" class="src" title="Capture audio from a browser tab or your screen/system (Chrome/Edge)">
+          🖥️ Capture Tab / System
+        </button>
+        <button id="btn-mic" class="src" title="Listen through your microphone">
+          🎙️ Microphone
+        </button>
+        <button id="btn-file" class="src" title="Play a local audio file">
+          🎵 Open File
+        </button>
+        <input type="file" id="file-input" accept="audio/*" hidden>
+        <button id="btn-stop" class="src danger" hidden>⏹ Stop</button>
+      </div>
+
+      <div class="group">
+        <select id="mode-select" title="Visualization mode (keys 1–4)">
+          <option value="bars">Bars</option>
+          <option value="radial" selected>Radial</option>
+          <option value="wave">Waves</option>
+          <option value="particles">Particles</option>
+        </select>
+        <select id="theme-select" title="Color theme (key C to cycle)">
+          <option value="aurora" selected>Aurora</option>
+          <option value="sunset">Sunset</option>
+          <option value="neon">Neon</option>
+          <option value="mono">Mono</option>
+        </select>
+        <button id="btn-fullscreen" title="Fullscreen (F)">⛶</button>
+      </div>
+    </header>
+
+    <div id="status" class="idle">
+      <div id="status-dot"></div>
+      <span id="status-text">Pick an audio source to begin</span>
+    </div>
+
+    <div id="welcome">
+      <h2>🌀 SonicTrance</h2>
+      <p>Real-time music visualization, entirely in your browser.</p>
+      <ul>
+        <li><strong>🖥️ Capture Tab / System</strong> — visualize whatever is already playing (Spotify web, YouTube…). Pick a tab or screen and check <em>“Share audio”</em>. Chrome &amp; Edge.</li>
+        <li><strong>🎙️ Microphone</strong> — picks up any sound in the room. Works in every browser.</li>
+        <li><strong>🎵 Open File</strong> — play an MP3/FLAC/WAV from your machine.</li>
+      </ul>
+      <p class="hint">Keys: <kbd>1</kbd>–<kbd>4</kbd> modes · <kbd>C</kbd> theme · <kbd>F</kbd> fullscreen · <kbd>H</kbd> hide UI</p>
+      <p class="hint privacy">Audio never leaves your machine — everything is analyzed locally.</p>
+    </div>
+
+    <audio id="player" controls hidden></audio>
+  </div>
+
+  <script src="visualizers.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
